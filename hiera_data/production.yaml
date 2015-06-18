@@ -1,0 +1,7 @@
+---
+crontab:
+  - name: 'restart_redbox'
+    user: 'root'
+    command: "/sbin/service redbox restart"
+    hour: 3
+    minute: 0

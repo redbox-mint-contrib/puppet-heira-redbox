@@ -1,0 +1,47 @@
+---
+exec_path:
+   - '/usr/local/bin'
+   - '/opt/local/bin'
+   - '/usr/bin'
+   - '/usr/sbin'
+   - '/bin'
+   - '/sbin'
+install_parent_directory:
+   - '/opt'
+redbox_user:
+   - 'redbox'
+proxy:
+   - path: '/'
+     url: 'http://localhost:9000/'
+has_ssl: true
+has_dns: true
+ssl_config:
+  cert:
+    file: "/etc/ssl/local_certs/%{::fqdn}.crt"
+  key:
+    mode: '0444'
+    file: "/etc/ssl/local_certs/%{::fqdn}.key"
+  chain:
+    file: "/etc/ssl/local_certs/%{::fqdn}.chain"
+yum_repos:
+  - name: 'redbox'
+    descr: 'Redbox_repo'
+    baseurl: 'http://dev.redboxresearchdata.com.au/yum/releases'
+    gpgcheck: 0
+    enabled: 1
+crontab:
+  - name: 'deploy_redbox'
+    user: 'root'
+    command: "/usr/bin/puppet apply -e \"class {'puppet-redbox':}\" --logdest /var/log/puppet/puppet.log"
+    hour: 2
+    minute: 0
+packages:
+  mint:
+    system: 'mint'
+    package: 'mint-distro'
+    server_url_context: 'mint'
+    install_directory: '/opt/mint'
+  redbox:
+    system: 'redbox'
+    package: 'redbox-distro'
+    install_directory: '/opt/redbox'

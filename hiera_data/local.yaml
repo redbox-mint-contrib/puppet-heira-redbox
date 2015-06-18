@@ -1,0 +1,14 @@
+---
+proxy:
+   - path: '/mint'
+     url: 'http://localhost:9001/mint'
+yum_repos:
+  - name: 'redbox'
+    descr: 'Redbox_repo'
+    baseurl: 'http://dev.redboxresearchdata.com.au/yum/snapshots'
+    gpgcheck: 0
+    enabled: 1
+has_ssl: false
+has_dns: false
+tf_env:
+   server_environment: dev

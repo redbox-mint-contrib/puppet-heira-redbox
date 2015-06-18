@@ -1,0 +1,18 @@
+---
+proxy:
+   - path: '/mint'
+     url: 'http://localhost:9001/mint'
+yum_repos:
+  - name: 'redbox'
+    descr: 'Redbox_repo'
+    baseurl: 'http://dev.redboxresearchdata.com.au/yum/snapshots'
+    gpgcheck: 0
+    enabled: 1
+crontab:
+  - name: 'update_redbox'
+    user: 'root'
+    command: "/usr/bin/yum clean all && /usr/bin/yum update -y redbox-distro"
+    hour: 1
+    minute: 0
+tf_env:
+   server_environment: dev

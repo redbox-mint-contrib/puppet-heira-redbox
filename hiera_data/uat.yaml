@@ -1,0 +1,13 @@
+---
+crontab:
+  - name: 'restart_redbox'
+    user: 'root'
+    command: "/sbin/service redbox restart"
+    hour: 3
+    minute: 0
+yum_repos:
+  - name: 'redbox'
+    descr: 'Redbox_repo'
+    baseurl: 'http://dev.redboxresearchdata.com.au/yum/snapshots'
+    gpgcheck: 0
+    enabled: 1
